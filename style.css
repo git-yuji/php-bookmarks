@@ -47,7 +47,8 @@ body {
     box-shadow: 0 12px 30px rgb(15 23 42 / 8%);
 }
 
-.form-section h2 {
+.form-section h2,
+.result-section h2 {
     margin: 0 0 24px;
     font-size: 1.25rem;
 }
@@ -101,6 +102,35 @@ button:hover {
     background: #1d4ed8;
 }
 
+.result-section {
+    margin-top: 24px;
+    padding: 32px;
+    border: 1px solid #bfdbfe;
+    border-radius: 16px;
+    background: #eff6ff;
+}
+
+.result-section dl {
+    margin: 0;
+}
+
+.result-section dl div + div {
+    margin-top: 16px;
+}
+
+.result-section dt {
+    margin-bottom: 4px;
+    color: #1d4ed8;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.result-section dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
 @media (max-width: 600px) {
     body {
         padding: 24px 16px;
@@ -110,7 +140,8 @@ button:hover {
         font-size: 2rem;
     }
 
-    .form-section {
+    .form-section,
+    .result-section {
         padding: 24px 20px;
     }
 }

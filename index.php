@@ -2,6 +2,24 @@
 
 declare(strict_types=1);
 
+function escape(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
+$submitted = $_SERVER['REQUEST_METHOD'] === 'POST';
+$title = '';
+$url = '';
+$category = '';
+$note = '';
+
+if ($submitted) {
+    $title = trim((string) ($_POST['title'] ?? ''));
+    $url = trim((string) ($_POST['url'] ?? ''));
+    $category = (string) ($_POST['category'] ?? '');
+    $note = trim((string) ($_POST['note'] ?? ''));
+}
+
 ?>
 <!doctype html>
 <html lang="ja">
@@ -70,6 +88,31 @@ declare(strict_types=1);
                 <button type="submit">登録する</button>
             </form>
         </section>
+
+        <?php if ($submitted): ?>
+            <section class="result-section" aria-labelledby="result-heading">
+                <h2 id="result-heading">受け取った内容</h2>
+
+                <dl>
+                    <div>
+                        <dt>タイトル</dt>
+                        <dd><?= escape($title) ?></dd>
+                    </div>
+                    <div>
+                        <dt>URL</dt>
+                        <dd><?= escape($url) ?></dd>
+                    </div>
+                    <div>
+                        <dt>カテゴリー</dt>
+                        <dd><?= escape($category) ?></dd>
+                    </div>
+                    <div>
+                        <dt>メモ</dt>
+                        <dd><?= escape($note) ?></dd>
+                    </div>
+                </dl>
+            </section>
+        <?php endif; ?>
     </main>
 </body>
 </html>
